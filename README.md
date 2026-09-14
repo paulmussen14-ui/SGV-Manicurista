@@ -46,10 +46,13 @@ do {
     }
 
 } while (tipoCliente.equals(""));
+```
 
-Selección del sistema de uñas
-También se implementó do-while para validar el sistema de uñas seleccionado. Las opciones disponibles son Manicure, Pedicure y Nail Art.
+### Selección del sistema de uñas
 
+También se implementó `do-while` para validar el sistema de uñas seleccionado. Las opciones disponibles son Manicure, Pedicure y Nail Art.
+
+```java
 String tipoSistemaUñas;
 
 do {
@@ -77,20 +80,27 @@ do {
     }
 
 } while (tipoSistemaUñas.equals(""));
+```
 
-Cálculo del costo base
+### Cálculo del costo base
+
 El costo base se calcula considerando la cantidad de servicios agregados, el precio de cada servicio y el precio del sistema de uñas.
 
+```java
 double costoBase = (cantidadServicios * precioServicio) + precioSistemaUñas;
-Aplicación de descuentos
+```
+
+### Aplicación de descuentos
+
 El sistema aplica un descuento de acuerdo con el tipo de clienta:
 
-Nueva: 10 %
+| Tipo de clienta | Descuento |
+|---|---|
+| Nueva | 10 % |
+| Normal | 0 % |
+| VIP | 15 % |
 
-Normal: 0 %
-
-VIP: 15 %
-
+```java
 if (tipoCliente.equals("Nueva")) {
 
     descuentoAnticipado = costoBase * 0.10;
@@ -108,10 +118,13 @@ if (tipoCliente.equals("Nueva")) {
 
 double costoConDescuento = costoBase - descuentoAnticipado;
 double totalPagar = costoConDescuento;
+```
 
-Validación del adelanto
+### Validación del adelanto
+
 Para confirmar la reserva se establece un adelanto mínimo equivalente al 50 % del total.
 
+```java
 double adelantoMinimo = totalPagar * 0.50;
 
 do {
@@ -135,10 +148,13 @@ do {
         || montoAdelanto > totalPagar);
 
 double saldoPendiente = totalPagar - montoAdelanto;
+```
 
-Registro de varias reservas
-Se implementó un ciclo do-while para permitir registrar varias reservas en una misma ejecución.
+### Registro de varias reservas
 
+Se implementó un ciclo `do-while` para permitir registrar varias reservas en una misma ejecución.
+
+```java
 do {
 
     // Registro y procesamiento de la reserva
@@ -147,10 +163,13 @@ do {
     continuar = entrada.nextLine();
 
 } while (continuar.equalsIgnoreCase("SI"));
+```
 
-Almacenamiento de reservas
+### Almacenamiento de reservas
+
 Se utilizaron arreglos para almacenar la información de las reservas registradas.
 
+```java
 String[] nombres = new String[100];
 String[] tiposCliente = new String[100];
 String[] sistemasUñas = new String[100];
@@ -158,10 +177,13 @@ String[] sistemasUñas = new String[100];
 double[] totales = new double[100];
 double[] adelantos = new double[100];
 double[] saldos = new double[100];
+```
 
-Recorrido de reservas mediante for
-Se implementó una estructura for para realizar el recorrido de las reservas almacenadas
+### Recorrido de reservas mediante for
 
+Se implementó una estructura `for` para realizar el recorrido de las reservas almacenadas.
+
+```java
 for (int i = 0; i < cantidadReservas; i++) {
 
     System.out.println("\nReserva N.º " + (i + 1));
@@ -178,30 +200,24 @@ for (int i = 0; i < cantidadReservas; i++) {
     System.out.println("Saldo pendiente: S/."
             + String.format("%.2f", saldos[i]));
 }
+```
 
-Comprobante de reserva
+## Comprobante de reserva
+
 Después de registrar una reserva, el sistema genera un comprobante en consola con los principales datos de la operación:
 
-Nombre de la clienta.
+- Nombre de la clienta.
+- Tipo de clienta.
+- Sistema de uñas.
+- Cantidad de servicios.
+- Precio por servicio.
+- Costo base.
+- Descuento aplicado.
+- Total a pagar.
+- Adelanto realizado.
+- Saldo pendiente.
 
-Tipo de clienta.
-
-Sistema de uñas.
-
-Cantidad de servicios.
-
-Precio por servicio.
-
-Costo base.
-
-Descuento aplicado.
-
-Total a pagar.
-
-Adelanto realizado.
-
-Saldo pendiente.
-
+```
 --- COMPROBANTE DE RESERVA ---
 
 Clienta:                           Cliente Nueva
@@ -216,43 +232,41 @@ Saldo pendiente:                  S/.24.00
 
 ----------------------------------------
 Reserva procesada correctamente.
+```
 
-Pruebas realizadas
+## Pruebas realizadas
+
 Para verificar el funcionamiento del software se realizaron pruebas sobre las principales funcionalidades implementadas:
 
-Validación del tipo de clienta: Se verificaron las opciones Nueva, Normal y VIP. Se comprobó que una opción incorrecta genere el mensaje de validación y permita realizar nuevamente la selección.
+- **Validación del tipo de clienta:** Se verificaron las opciones Nueva, Normal y VIP. Se comprobó que una opción incorrecta genere el mensaje de validación y permita realizar nuevamente la selección.
+- **Validación del sistema de uñas:** Se verificaron Manicure, Pedicure y Nail Art. Las opciones incorrectas son rechazadas solicitando una nueva selección.
+- **Validación de descuentos:** Se comprobó la correcta aplicación de los porcentajes correspondientes (10%, 0%, 15%).
+- **Validación del adelanto:** Se verificó que el sistema bloquee adelantos inferiores al 50% o superiores al total a pagar.
+- **Registro de varias reservas:** Se verificó el flujo continuo mediante `do-while` y la visualización final con el ciclo `for`.
 
-Validación del sistema de uñas: Se verificaron Manicure, Pedicure y Nail Art. Las opciones incorrectas son rechazadas solicitando una nueva selección.
-
-Validación de descuentos: Se comprobó la correcta aplicación de los porcentajes correspondientes (10%, 0%, 15%).
-
-Validación del adelanto: Se verificó que el sistema bloquee adelantos inferiores al 50% o superiores al total a pagar.
-
-Registro de varias reservas: Se verificó el flujo continuo mediante do-while y la visualización final con el ciclo for.
 <img width="663" height="369" alt="image" src="https://github.com/user-attachments/assets/ede0cf81-2624-45ad-a016-aa481063fc57" />
-Tecnologías utilizadas
-Java: Lenguaje de programación orientado a objetos.
 
-Scanner: Clase para el ingreso de datos por consola.
+## Tecnologías utilizadas
 
-Visual Studio Code: Entorno de desarrollo integrado (IDE).
+- **Java:** Lenguaje de programación orientado a objetos.
+- **Scanner:** Clase para el ingreso de datos por consola.
+- **Visual Studio Code:** Entorno de desarrollo integrado (IDE).
+- **Git:** Sistema de control de versiones.
+- **GitHub:** Plataforma de almacenamiento y gestión de código fuente.
 
-Git: Sistema de control de versiones.
+## Conclusión
 
-GitHub: Plataforma de almacenamiento y gestión de código fuente.
-
-Conclusión
 La segunda entrega permitió mejorar el sistema desarrollado inicialmente para Marie Nails mediante la implementación de estructuras repetitivas, validaciones y arreglos.
 
-El uso de do-while permite controlar de manera eficiente las entradas de usuario y repetir el proceso de reserva, mientras que el ciclo for permite recorrer y mostrar de manera ordenada las reservas registradas. Asimismo, la validación del adelanto mínimo y el cálculo del saldo pendiente aseguran la robustez financiera y lógica del proceso de reserva y pago.
+El uso de `do-while` permite controlar de manera eficiente las entradas de usuario y repetir el proceso de reserva, mientras que el ciclo `for` permite recorrer y mostrar de manera ordenada las reservas registradas. Asimismo, la validación del adelanto mínimo y el cálculo del saldo pendiente aseguran la robustez financiera y lógica del proceso de reserva y pago.
 
 Con estas modificaciones, el sistema presenta una solución más estructurada, profesional y funcional para la gestión básica de reservas en Marie Nails.
 
-Referencias bibliográficas
-Oracle. The Java Tutorials – Learning the Java Language. Oracle.
+## Referencias bibliográficas
 
-Joyanes Aguilar, L. Fundamentos de programación: algoritmos, estructuras de datos y objetos. McGraw-Hill.
-Autor:
-Jean paul Moncada Nateros
+- Oracle. *The Java Tutorials – Learning the Java Language*. Oracle.
+- Joyanes Aguilar, L. *Fundamentos de programación: algoritmos, estructuras de datos y objetos*. McGraw-Hill.
 
+---
 
+**Autor:** Jean Paul Moncada Nateros
