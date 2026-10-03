@@ -41,6 +41,11 @@ El `Main` crea los objetos con `new`, llama a sus métodos y muestra los resulta
 
 ```
 SGV-Manicurista/
+├── docs/
+│   └── diagrama_clases.png → diagrama de clases del paquete modelo
+├── img/                 → capturas de pantalla de la evidencia anterior (menú de reservas)
+├── informe/
+│   └── JeanPaulMoncada_Evidencia3.docx → informe técnico de la Evidencia 3
 ├── modelo/
 │   ├── Agenda.java      → guarda las reservas y lista las pendientes
 │   ├── Catalogo.java    → servicios, efectos y otros del salón, con búsqueda por nombre
@@ -55,6 +60,10 @@ SGV-Manicurista/
 └── principal/
     └── Main.java        → crea los objetos, llama a sus métodos y muestra los resultados
 ```
+
+### Diagrama de clases
+
+![Diagrama de clases](docs/diagrama_clases.png)
 
 ### Herencia entre clases
 
@@ -124,7 +133,7 @@ Estado: Pagado | Tipo de pago: Yape
 | 1     | Agregar código fuente de POO al proyecto                                          | 5      | ✅ Hecho                                  |
 | 2     | Revisar y corregir código fuente del software de otro equipo                      | 5      | ➖ No se realiza (indicación del docente) |
 | 3     | Brindar sugerencias sobre el código del otro equipo                               | 6      | ➖ No se realiza (indicación del docente) |
-| 4     | Explicar la complementación de funcionalidades, revisando el código y con pruebas | 6      | ⏳ Pendiente                              |
+| 4     | Explicar la complementación de funcionalidades, revisando el código y con pruebas | 6      | ✅ Hecho                                  |
 
 ### Checklist del informe
 
@@ -135,9 +144,8 @@ Estado: Pagado | Tipo de pago: Yape
 - [x] Herencia y polimorfismo
 - [x] Paquetes
 - [x] Pruebas en el `Main` (adelanto válido e inválido, varios efectos, saldo)
-- [ ] Referencias bibliográficas
-- [ ] Informe con formato `JeanPaulMoncada_Evidencia3`
-- [ ] Exposición (máximo 10 minutos, con apoyo visual)
+- [x] Referencias bibliográficas
+- [x] Informe de la Evidencia 3 (carpeta `informe/`)
 
 ---
 
@@ -151,3 +159,12 @@ Estado: Pagado | Tipo de pago: Yape
 - Una cita guarda un solo servicio; los efectos se agregan recién en la ficha, por lo que el adelanto se calcula solo sobre el servicio principal.
 - Todavía **no existe la opción de cancelar una reserva** (ni la política sobre el adelanto).
 - La carta de fidelización (5.ª visita con descuento) se aplica de forma manual mediante el descuento de la ficha.
+
+---
+
+## Referencias bibliográficas
+
+- Oracle. (s. f.). _Lesson: Object-oriented programming concepts_. The Java Tutorials. https://docs.oracle.com/javase/tutorial/java/concepts/
+- Oracle. (s. f.). _Controlling access to members of a class_. The Java Tutorials. https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+- Oracle. (s. f.). _Polymorphism_. The Java Tutorials. https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html
+- Oracle. (s. f.). _Inheritance_. Dev.java. https://dev.java/learn/inheritance
