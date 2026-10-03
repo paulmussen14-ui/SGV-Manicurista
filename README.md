@@ -1,272 +1,153 @@
-# Sistema de Reserva y Pago – Marie Nails
+# SGV-Manicurista
 
-## Descripción
+Sistema de reservas, citas y fichas de servicio para **Marie Nails** (salón de uñas), desarrollado en **Java** con **Programación Orientada a Objetos**.
 
-El proyecto **Sistema de Reserva y Pago – Marie Nails** consiste en el desarrollo de un sistema de consola en Java para gestionar reservas de servicios de manicure, pedicure y nail art.
+Proyecto de la UD _Algoritmos para la solución de problemas_ (Certus). Corresponde a la **Evidencia 3 (AA3)**.
 
-El sistema permite registrar los datos de la clienta, seleccionar el tipo de clienta y el sistema de uñas, ingresar los precios correspondientes, calcular el costo base, aplicar descuentos, validar el adelanto mínimo para confirmar la reserva y calcular el saldo pendiente.
-
-En esta segunda entrega se incorporaron estructuras repetitivas, validaciones y arreglos para permitir el registro de varias reservas y realizar posteriormente un recorrido de las mismas.
-
-## Objetivo
-
-Desarrollar y verificar un sistema computacional aplicando algoritmos y estructuras de programación en Java, mejorando el código desarrollado en la primera entrega mediante estructuras repetitivas, validaciones y almacenamiento de reservas.
-
-## Algoritmos implementados
-
-### Selección y validación del tipo de clienta
-
-Se implementó una estructura `do-while` para validar la selección del tipo de clienta. El sistema presenta tres opciones: Nueva, Normal y VIP. Si se ingresa una opción incorrecta, se solicita nuevamente la selección.
-
-```java
-String tipoCliente;
-
-do {
-    System.out.println("\nTipo de clienta:");
-    System.out.println("1. Nueva");
-    System.out.println("2. Normal");
-    System.out.println("3. VIP");
-    System.out.print("Seleccione una opción: ");
-
-    int opcionCliente = entrada.nextInt();
-    entrada.nextLine();
-
-    if (opcionCliente == 1) {
-        tipoCliente = "Nueva";
-
-    } else if (opcionCliente == 2) {
-        tipoCliente = "Normal";
-
-    } else if (opcionCliente == 3) {
-        tipoCliente = "VIP";
-
-    } else {
-        tipoCliente = "";
-        System.out.println("Opción no válida.");
-    }
-
-} while (tipoCliente.equals(""));
-```
-
-### Selección del sistema de uñas
-
-También se implementó `do-while` para validar el sistema de uñas seleccionado. Las opciones disponibles son Manicure, Pedicure y Nail Art.
-
-```java
-String tipoSistemaUñas;
-
-do {
-    System.out.println("\nTipo de sistema de uñas:");
-    System.out.println("1. Manicure");
-    System.out.println("2. Pedicure");
-    System.out.println("3. Nail Art");
-    System.out.print("Seleccione una opción: ");
-
-    int opcionSistema = entrada.nextInt();
-    entrada.nextLine();
-
-    if (opcionSistema == 1) {
-        tipoSistemaUñas = "Manicure";
-
-    } else if (opcionSistema == 2) {
-        tipoSistemaUñas = "Pedicure";
-
-    } else if (opcionSistema == 3) {
-        tipoSistemaUñas = "Nail Art";
-
-    } else {
-        tipoSistemaUñas = "";
-        System.out.println("Opción no válida.");
-    }
-
-} while (tipoSistemaUñas.equals(""));
-```
-
-### Cálculo del costo base
-
-El costo base se calcula considerando la cantidad de servicios agregados, el precio de cada servicio y el precio del sistema de uñas.
-
-```java
-double costoBase = (cantidadServicios * precioServicio) + precioSistemaUñas;
-```
-
-### Aplicación de descuentos
-
-El sistema aplica un descuento de acuerdo con el tipo de clienta:
-
-| Tipo de clienta | Descuento |
-|---|---|
-| Nueva | 10 % |
-| Normal | 0 % |
-| VIP | 15 % |
-
-```java
-if (tipoCliente.equals("Nueva")) {
-
-    descuentoAnticipado = costoBase * 0.10;
-    descripcionCliente = "Cliente Nueva";
-
-} else if (tipoCliente.equals("Normal")) {
-
-    descripcionCliente = "Cliente Normal";
-
-} else if (tipoCliente.equals("VIP")) {
-
-    descuentoAnticipado = costoBase * 0.15;
-    descripcionCliente = "Cliente VIP";
-}
-
-double costoConDescuento = costoBase - descuentoAnticipado;
-double totalPagar = costoConDescuento;
-```
-
-### Validación del adelanto
-
-Para confirmar la reserva se establece un adelanto mínimo equivalente al 50 % del total.
-
-```java
-double adelantoMinimo = totalPagar * 0.50;
-
-do {
-    System.out.print("Ingrese el monto del adelanto S/.: ");
-    montoAdelanto = entrada.nextDouble();
-
-    if (montoAdelanto < adelantoMinimo) {
-
-        System.out.println(
-            "El adelanto debe ser como mínimo el 50% del total."
-        );
-
-    } else if (montoAdelanto > totalPagar) {
-
-        System.out.println(
-            "El adelanto no puede superar el total a pagar."
-        );
-    }
-
-} while (montoAdelanto < adelantoMinimo
-        || montoAdelanto > totalPagar);
-
-double saldoPendiente = totalPagar - montoAdelanto;
-```
-
-### Registro de varias reservas
-
-Se implementó un ciclo `do-while` para permitir registrar varias reservas en una misma ejecución.
-
-```java
-do {
-
-    // Registro y procesamiento de la reserva
-
-    System.out.print("\n¿Desea registrar otra reserva? (SI/NO): ");
-    continuar = entrada.nextLine();
-
-} while (continuar.equalsIgnoreCase("SI"));
-```
-
-### Almacenamiento de reservas
-
-Se utilizaron arreglos para almacenar la información de las reservas registradas.
-
-```java
-String[] nombres = new String[100];
-String[] tiposCliente = new String[100];
-String[] sistemasUñas = new String[100];
-
-double[] totales = new double[100];
-double[] adelantos = new double[100];
-double[] saldos = new double[100];
-```
-
-### Recorrido de reservas mediante for
-
-Se implementó una estructura `for` para realizar el recorrido de las reservas almacenadas.
-
-```java
-for (int i = 0; i < cantidadReservas; i++) {
-
-    System.out.println("\nReserva N.º " + (i + 1));
-    System.out.println("Clienta: " + nombres[i]);
-    System.out.println("Tipo de clienta: " + tiposCliente[i]);
-    System.out.println("Sistema de uñas: " + sistemasUñas[i]);
-
-    System.out.println("Total: S/."
-            + String.format("%.2f", totales[i]));
-
-    System.out.println("Adelanto: S/."
-            + String.format("%.2f", adelantos[i]));
-
-    System.out.println("Saldo pendiente: S/."
-            + String.format("%.2f", saldos[i]));
-}
-```
-
-## Comprobante de reserva
-
-Después de registrar una reserva, el sistema genera un comprobante en consola con los principales datos de la operación:
-
-- Nombre de la clienta.
-- Tipo de clienta.
-- Sistema de uñas.
-- Cantidad de servicios.
-- Precio por servicio.
-- Costo base.
-- Descuento aplicado.
-- Total a pagar.
-- Adelanto realizado.
-- Saldo pendiente.
-
-```
---- COMPROBANTE DE RESERVA ---
-
-Clienta:                           Cliente Nueva
-Sistema de uñas:                  Manicure
-Cantidad de servicios reservados: 1
-Precio por servicio:              S/.20.00
-Costo base:                       S/.60.00
-Descuento aplicado:               S/.6.00
-Total a pagar:                    S/.54.00
-Adelanto realizado:               S/.30.00
-Saldo pendiente:                  S/.24.00
-
-----------------------------------------
-Reserva procesada correctamente.
-```
-
-## Pruebas realizadas
-
-Para verificar el funcionamiento del software se realizaron pruebas sobre las principales funcionalidades implementadas:
-
-- **Validación del tipo de clienta:** Se verificaron las opciones Nueva, Normal y VIP. Se comprobó que una opción incorrecta genere el mensaje de validación y permita realizar nuevamente la selección.
-- **Validación del sistema de uñas:** Se verificaron Manicure, Pedicure y Nail Art. Las opciones incorrectas son rechazadas solicitando una nueva selección.
-- **Validación de descuentos:** Se comprobó la correcta aplicación de los porcentajes correspondientes (10%, 0%, 15%).
-- **Validación del adelanto:** Se verificó que el sistema bloquee adelantos inferiores al 50% o superiores al total a pagar.
-- **Registro de varias reservas:** Se verificó el flujo continuo mediante `do-while` y la visualización final con el ciclo `for`.
-
-<img width="663" height="369" alt="image" src="https://github.com/user-attachments/assets/ede0cf81-2624-45ad-a016-aa481063fc57" />
-
-## Tecnologías utilizadas
-
-- **Java:** Lenguaje de programación orientado a objetos.
-- **Scanner:** Clase para el ingreso de datos por consola.
-- **Visual Studio Code:** Entorno de desarrollo integrado (IDE).
-- **Git:** Sistema de control de versiones.
-- **GitHub:** Plataforma de almacenamiento y gestión de código fuente.
-
-## Conclusión
-
-La segunda entrega permitió mejorar el sistema desarrollado inicialmente para Marie Nails mediante la implementación de estructuras repetitivas, validaciones y arreglos.
-
-El uso de `do-while` permite controlar de manera eficiente las entradas de usuario y repetir el proceso de reserva, mientras que el ciclo `for` permite recorrer y mostrar de manera ordenada las reservas registradas. Asimismo, la validación del adelanto mínimo y el cálculo del saldo pendiente aseguran la robustez financiera y lógica del proceso de reserva y pago.
-
-Con estas modificaciones, el sistema presenta una solución más estructurada, profesional y funcional para la gestión básica de reservas en Marie Nails.
-
-## Referencias bibliográficas
-
-- Oracle. *The Java Tutorials – Learning the Java Language*. Oracle.
-- Joyanes Aguilar, L. *Fundamentos de programación: algoritmos, estructuras de datos y objetos*. McGraw-Hill.
+- **Equipo:** Jean Paul Moncada
+- **Docente:** Yenner Yerson Mendoza Vilchez
 
 ---
 
-**Autor:** Jean Paul Moncada Nateros
+## Qué hace el programa
+
+El `Main` crea los objetos con `new`, llama a sus métodos y muestra los resultados en consola (sin menús ni ingreso de datos por teclado). El flujo que se prueba es:
+
+1. **Catálogo:** los servicios, efectos y otros servicios del salón se toman del `Catalogo`; los precios están ahí, no se escriben a mano.
+2. **Clientas:** una clienta normal (`Cliente`) y una clienta VIP (`ClienteVip`) con su descuento.
+3. **Cita:** une a una clienta con un servicio del catálogo, en una fecha y hora.
+4. **Reserva:** el **precio base** es el precio del servicio principal de la cita. La clienta paga un **adelanto de mínimo 50 %** del precio base; un adelanto menor, o mayor al precio base, se rechaza. La reserva pasa de **Pendiente** a **Confirmada** cuando se registra un adelanto válido.
+5. **Agenda:** guarda las reservas y lista las que siguen pendientes.
+6. **Ficha de servicio (`Factura`):** al finalizar el servicio se agregan:
+   - tamaño de uña (con recargo)
+   - varios efectos
+   - reconstrucción de manos o pies (precio por dedo)
+   - descuento (en % o en S/., con motivo y quién lo autorizó)
+7. **Cuenta final:** `saldo a pagar = total - adelanto`. Se registra el tipo de pago y la ficha pasa a **Pagado**.
+
+### Reglas de negocio
+
+| Regla                 | Detalle                                                            |
+| --------------------- | ------------------------------------------------------------------ |
+| Descuento por clienta | Nueva 10 %, Normal 0 %, VIP 15 %                                   |
+| Adelanto mínimo       | 50 % del precio base (precio del servicio principal del catálogo)  |
+| Recargo por tamaño    | Tamaños 1 a 4 sin recargo; desde el 5 suben S/ 10 por número       |
+| Efectos por ficha     | Se pueden marcar varios (hasta 19)                                 |
+| Saldo                 | Total de la ficha menos el adelanto de la reserva (nunca negativo) |
+
+---
+
+## Estructura del proyecto
+
+```
+SGV-Manicurista/
+├── modelo/
+│   ├── Agenda.java      → guarda las reservas y lista las pendientes
+│   ├── Catalogo.java    → servicios, efectos y otros del salón, con búsqueda por nombre
+│   ├── Cita.java        → cliente, servicio, fecha y hora
+│   ├── Cliente.java     → clase padre: nombre, apellido, teléfono, tipo de clienta y descuento
+│   ├── ClienteVip.java  → hija de Cliente: beneficio y descuento propio
+│   ├── Efecto.java      → hija de Servicio: efectos de nail art
+│   ├── Factura.java     → ficha de servicio: efectos, tamaño de uña, descuento, saldo y pago
+│   ├── Otro.java        → hija de Servicio: reconstrucción de manos o pies
+│   ├── Reserva.java     → precio base, adelanto, saldo y estado (Pendiente / Confirmada)
+│   └── Servicio.java    → clase padre: nombre y precio
+└── principal/
+    └── Main.java        → crea los objetos, llama a sus métodos y muestra los resultados
+```
+
+### Herencia entre clases
+
+```
+Cliente  ──► ClienteVip
+Servicio ──► Efecto
+         └─► Otro
+```
+
+### Conceptos de POO aplicados (rúbrica AA3)
+
+| Criterio                         | Dónde se ve                                                                                                                                                                                                                    |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Programación orientada a objetos | Las 10 clases del paquete `modelo` colaboran: `Factura` usa `Reserva`, `Reserva` usa `Cita`, `Cita` usa `Cliente` y `Servicio`, `Agenda` guarda `Reserva`                                                                      |
+| Clase y objeto                   | `Main` crea objetos con `new Cliente(...)`, `new ClienteVip(...)`, `new Catalogo()`, `new Cita(...)`, `new Reserva(...)`, `new Agenda()`, `new Factura(...)`                                                                   |
+| Constructores                    | Cada clase tiene su constructor; las hijas llaman a `super(...)` (por ejemplo `ClienteVip`, `Efecto` y `Otro`)                                                                                                                 |
+| Encapsulamiento                  | Atributos `private` (o `protected` en las clases padre) con getters y setters, algunos con validación (`setTamanoUña`). `Reserva` no tiene `setAdelanto`: el adelanto solo entra por `registrarAdelanto()`, que valida el 50 % |
+| Herencia                         | `ClienteVip extends Cliente`, `Efecto extends Servicio` y `Otro extends Servicio`                                                                                                                                              |
+| Polimorfismo                     | `@Override` en `getDescuento()` y `mostrarInformacion()` (`ClienteVip`) y en `getTipo()` (`Efecto` y `Otro`); el `Catalogo` guarda efectos y otros en arreglos de `Servicio`                                                   |
+| Paquetes                         | `modelo` (clases del negocio) y `principal` (ejecución), con `package` e `import`                                                                                                                                              |
+
+---
+
+## Cómo ejecutarlo
+
+Requiere el **JDK** instalado. Desde la raíz del proyecto, en PowerShell:
+
+```powershell
+javac -encoding UTF-8 -d out (Get-ChildItem modelo,principal -Filter *.java).FullName
+java -cp out principal.Main
+```
+
+Si las tildes o la ñ se ven mal en la consola, ejecuta antes `chcp 65001`.
+
+### Ejemplo de salida (ficha de servicio)
+
+```
+======== FICHA DE SERVICIO N.º 1 ========
+MARIE NAILS
+Fecha: 11/10/2026 10:00
+Clienta: Lucía Torres - Normal
+Teléfono: 987654321
+----------------------------------------
+Acrílicas: S/ 60.0
+Espejo: S/ 10.0
+Stickers: S/ 10.0
+Pedrería: S/ 10.0
+Reconstrucción de manos (2 dedos): S/ 10.0
+Tamaño de uña 6 (recargo): S/ 20.0
+----------------------------------------
+SUBTOTAL: S/ 120.0
+DESCUENTO: S/ 12.0
+Motivo: Cumpleaños | Autorizó: Marie
+TOTAL COBRADO: S/ 108.0
+Adelanto pagado (mínimo 50% del servicio): S/ 30.0
+SALDO A PAGAR: S/ 78.0
+----------------------------------------
+Estado: Pagado | Tipo de pago: Yape
+```
+
+---
+
+## Avance de la Evidencia 3
+
+| Etapa | Descripción                                                                       | Semana | Estado                                    |
+| ----- | --------------------------------------------------------------------------------- | ------ | ----------------------------------------- |
+| 1     | Agregar código fuente de POO al proyecto                                          | 5      | ✅ Hecho                                  |
+| 2     | Revisar y corregir código fuente del software de otro equipo                      | 5      | ➖ No se realiza (indicación del docente) |
+| 3     | Brindar sugerencias sobre el código del otro equipo                               | 6      | ➖ No se realiza (indicación del docente) |
+| 4     | Explicar la complementación de funcionalidades, revisando el código y con pruebas | 6      | ⏳ Pendiente                              |
+
+### Checklist del informe
+
+- [x] Código fuente con programación orientada a objetos
+- [x] Clases y objetos
+- [x] Constructores
+- [x] Encapsulamiento
+- [x] Herencia y polimorfismo
+- [x] Paquetes
+- [x] Pruebas en el `Main` (adelanto válido e inválido, varios efectos, saldo)
+- [ ] Referencias bibliográficas
+- [ ] Informe con formato `JeanPaulMoncada_Evidencia3`
+- [ ] Exposición (máximo 10 minutos, con apoyo visual)
+
+---
+
+## Limitaciones conocidas y mejoras futuras
+
+- Los datos se crean dentro del `Main` y **solo existen mientras el programa está abierto**. A futuro se pueden guardar en archivo o base de datos.
+- No hay menú ni ingreso de datos por teclado: el `Main` es una demostración con datos de ejemplo.
+- La fecha y la hora se guardan como texto y **no se valida su formato**.
+- Cada servicio tiene un **único precio de lista**; en la ficha real de Marie Nails algunos servicios tienen un rango de precio.
+- El `Catalogo` usa arreglos de tamaño fijo, así que **no permite agregar servicios nuevos** mientras el programa corre.
+- Una cita guarda un solo servicio; los efectos se agregan recién en la ficha, por lo que el adelanto se calcula solo sobre el servicio principal.
+- Todavía **no existe la opción de cancelar una reserva** (ni la política sobre el adelanto).
+- La carta de fidelización (5.ª visita con descuento) se aplica de forma manual mediante el descuento de la ficha.
