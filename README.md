@@ -41,11 +41,8 @@ El `Main` crea los objetos con `new`, llama a sus métodos y muestra los resulta
 
 ```
 SGV-Manicurista/
-├── docs/
-│   └── diagrama_clases.png → diagrama de clases del paquete modelo
-├── img/                 → capturas de pantalla de la evidencia anterior (menú de reservas)
-├── informe/
-│   └── JeanPaulMoncada_Evidencia3.docx → informe técnico de la Evidencia 3
+├── datos/               → archivos .dat donde el sistema guardará los datos (no se suben a GitHub)
+├── menus/               → pantallas de consola: login, registro, menú principal y un menú por módulo
 ├── modelo/
 │   ├── Agenda.java      → guarda las reservas y lista las pendientes
 │   ├── Catalogo.java    → servicios, efectos y otros del salón, con búsqueda por nombre
@@ -56,14 +53,16 @@ SGV-Manicurista/
 │   ├── Factura.java     → ficha de servicio: efectos, tamaño de uña, descuento, saldo y pago
 │   ├── Otro.java        → hija de Servicio: reconstrucción de manos o pies
 │   ├── Reserva.java     → precio base, adelanto, saldo y estado (Pendiente / Confirmada)
-│   └── Servicio.java    → clase padre: nombre y precio
-└── principal/
-    └── Main.java        → crea los objetos, llama a sus métodos y muestra los resultados
+│   ├── Servicio.java    → clase padre: nombre y precio
+│   ├── Usuario.java     → clase padre: persona que inicia sesión (correo, contraseña y rol)
+│   ├── Administrador.java → hija de Usuario: acceso total
+│   └── Manicurista.java → hija de Usuario: atiende clientas, reservas y fichas
+├── principal/
+│   ├── Main.java        → demostración de la Evidencia 3: crea los objetos y muestra los resultados
+│   └── MainSistema.java → sistema completo con inicio de sesión y menús (en desarrollo)
+├── servicios/           → lógica del negocio: acceso, usuarios, clientas, reservas, fichas, reportes y archivos
+└── utilidades/          → Consola (lectura por teclado) y Validador (validaciones)
 ```
-
-### Diagrama de clases
-
-![Diagrama de clases](docs/diagrama_clases.png)
 
 ### Herencia entre clases
 
@@ -77,7 +76,7 @@ Servicio ──► Efecto
 
 | Criterio                         | Dónde se ve                                                                                                                                                                                                                    |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Programación orientada a objetos | Las 10 clases del paquete `modelo` colaboran: `Factura` usa `Reserva`, `Reserva` usa `Cita`, `Cita` usa `Cliente` y `Servicio`, `Agenda` guarda `Reserva`                                                                      |
+| Programación orientada a objetos | Las 10 clases de la Evidencia 3 en el paquete `modelo` colaboran: `Factura` usa `Reserva`, `Reserva` usa `Cita`, `Cita` usa `Cliente` y `Servicio`, `Agenda` guarda `Reserva`                                                                      |
 | Clase y objeto                   | `Main` crea objetos con `new Cliente(...)`, `new ClienteVip(...)`, `new Catalogo()`, `new Cita(...)`, `new Reserva(...)`, `new Agenda()`, `new Factura(...)`                                                                   |
 | Constructores                    | Cada clase tiene su constructor; las hijas llaman a `super(...)` (por ejemplo `ClienteVip`, `Efecto` y `Otro`)                                                                                                                 |
 | Encapsulamiento                  | Atributos `private` (o `protected` en las clases padre) con getters y setters, algunos con validación (`setTamanoUña`). `Reserva` no tiene `setAdelanto`: el adelanto solo entra por `registrarAdelanto()`, que valida el 50 % |
@@ -92,8 +91,9 @@ Servicio ──► Efecto
 Requiere el **JDK** instalado. Desde la raíz del proyecto, en PowerShell:
 
 ```powershell
-javac -encoding UTF-8 -d out (Get-ChildItem modelo,principal -Filter *.java).FullName
-java -cp out principal.Main
+javac -encoding UTF-8 -d out (Get-ChildItem modelo,servicios,menus,utilidades,principal -Filter *.java).FullName
+java -cp out principal.Main          # demostración de la Evidencia 3
+java -cp out principal.MainSistema   # sistema con inicio de sesión (en desarrollo)
 ```
 
 Si las tildes o la ñ se ven mal en la consola, ejecuta antes `chcp 65001`.
@@ -145,7 +145,7 @@ Estado: Pagado | Tipo de pago: Yape
 - [x] Paquetes
 - [x] Pruebas en el `Main` (adelanto válido e inválido, varios efectos, saldo)
 - [x] Referencias bibliográficas
-- [x] Informe de la Evidencia 3 (carpeta `informe/`)
+- [x] Informe de la Evidencia 3
 
 ---
 

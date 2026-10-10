@@ -1,0 +1,6 @@
+*.class
+out/
+bin/
+datos/*.dat
+.vscode/
+.idea/
