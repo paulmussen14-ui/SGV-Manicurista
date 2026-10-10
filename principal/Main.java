@@ -1,7 +1,7 @@
 package principal;
 
-import modelo.Agenda;
-import modelo.Catalogo;
+import servicios.Agenda;
+import servicios.Catalogo;
 import modelo.Cita;
 import modelo.Cliente;
 import modelo.ClienteVip;
