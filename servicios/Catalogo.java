@@ -1,4 +1,8 @@
-package modelo;
+package servicios;
+
+import modelo.Efecto;
+import modelo.Otro;
+import modelo.Servicio;
 
 // Guarda la lista de servicios, efectos y otros del salón, y permite buscarlos por nombre.
 public class Catalogo {

@@ -28,14 +28,18 @@ public class ClienteVip extends Cliente {
         this.porcentajeDescuento = porcentajeDescuento;
     }
 
-    @Override // la clienta VIP tiene su propio descuento (15%)
+    @Override
     public double getDescuento() {
         return porcentajeDescuento;
     }
 
-    @Override // muestra lo del padre y agrega el beneficio
-    public void mostrarInformacion() {
-        super.mostrarInformacion();
-        System.out.println("Beneficio: " + beneficio);
+    @Override
+    public String getRol() {
+        return "Cliente VIP";
+    }
+
+    @Override
+    public String mostrarInformacion() {
+        return super.mostrarInformacion() + " | Beneficio: " + beneficio;
     }
 }

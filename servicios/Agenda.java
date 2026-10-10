@@ -1,4 +1,6 @@
-package modelo;
+package servicios;
+
+import modelo.Reserva;
 
 // Guarda las reservas del salón y permite buscarlas y listar las pendientes.
 // El arreglo es privado: solo se accede a él mediante los métodos de la clase.

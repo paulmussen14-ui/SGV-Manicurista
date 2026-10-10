@@ -1,6 +1,5 @@
 package modelo;
 
-// Clase padre: servicio que ofrece el salón (manicure, pedicure, etc.).
 public class Servicio {
     protected String nombre;
     protected double precio;
@@ -31,8 +30,8 @@ public class Servicio {
     }
 
     public void mostrarInformacion() {
-        System.out.println("Servicio: " + nombre);
+        System.out.println("Servicio: " + getNombre());
         System.out.println("Tipo: " + getTipo());
-        System.out.println("Precio: S/ " + precio);
+        System.out.println("Precio: S/ " + getPrecio());
     }
 }
